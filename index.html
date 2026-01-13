@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài tập về nhà - EBU5 Unit 8 Lesson 1</title>
+  
+  <!-- Open Graph / Preview khi chia sẻ link -->
+  <meta property="og:title" content="Bài tập về nhà - EBU5 Unit 8 Lesson 1" />
+  <meta property="og:description" content="Hãy làm bài tập về nhà trước khi quên hết mọi kiến thức! 🚀" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lamchiphuong.github.io/pet-homework-unit3" />
+  <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/207/207190.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Bài tập Tiếng Anh vui vẻ" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bài tập về nhà - EBU5 Unit 8 Lesson 1">
+  <meta name="twitter:description" content="Hãy làm bài tập về nhà trước khi quên hết mọi kiến thức! 🚀">
+  <meta name="twitter:image" content="https://cdn-icons-png.flaticon.com/512/207/207190.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Comic+Neue:wght@700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7ff 0%, #e0eafc 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* POPUP - LUÔN ĐỨNG TRÊN CÙNG */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      pointer-events: none;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .popup {
+      background: white;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      transform: scale(0.8);
+      transition: transform 0.4s ease;
+      padding: 30px;
+      position: relative;
+      z-index: 10000;
+    }
+
+    .popup-overlay.active .popup {
+      transform: scale(1);
+    }
+
+    .popup h2 {
+      text-align: center;
+      color: #4a6cf7;
+      margin-bottom: 20px;
+      font-family: 'Comic Neue', cursive;
+      font-size: 28px;
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: #aaa;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-close:hover {
+      color: #ff6b6b;
+      transform: rotate(90deg);
+    }
+
+    .btn {
+      background: #4a6cf7;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(74, 108, 247, 0.3);
+      transition: all 0.3s;
+      margin: 20px 10px 0;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(74, 108, 247, 0.4);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+
+    th {
+      background: #4a6cf7;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f9ff;
+    }
+
+    /* NỘI DUNG CHÍNH */
+    .main-content {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .main-content.visible {
+      opacity: 1;
+    }
+
+    .frame-container {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .frame-container iframe {
+      width: 100%;
+      height: 1000px; /* Có thể chỉnh lớn hơn nếu bài dài */
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    /* NÚT CỐ ĐỊNH */
+    .fixed-buttons {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 900;
+    }
+
+    .fixed-btn {
+      background: white;
+      color: #4a6cf7;
+      border: none;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .fixed-btn:hover {
+      transform: scale(1.15) translateY(-5px);
+      box-shadow: 0 15px 30px rgba(74,108,247,0.3);
+      background: #4a6cf7;
+      color: white;
+    }
+
+    .fixed-btn .tag {
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 4px;
+      color: #ff6b9d;
+      background: #fff0f5;
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .fixed-btn:hover .tag {
+      color: white;
+      background: #ff8fb1;
+    }
+
+    .emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Popup chào mừng -->
+  <div class="popup-overlay active" id="welcomePopup">
+    <div class="popup">
+      <button class="btn-close" onclick="closePopup('welcomePopup')">&times;</button>
+      <div class="emoji">🎉✨</div>
+      <h2>Chào các em!</h2>
+      <p>Hãy bắt đầu ôn tập bài học của chúng ta bằng bài tập sau.<br>Các em đã sẵn sàng chưa?</p>
+      <div style="text-align:center; margin-top:30px;">
+        <button class="btn" onclick="startExercise()">Sẵn sàng rồi ạ! 🚀</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Hướng dẫn -->
+  <div class="popup-overlay" id="instructionPopup">
+    <div class="popup">
+      <button class="btn-close" onclick="closePopup('instructionPopup')">&times;</button>
+      <h2>Hướng dẫn 📚</h2>
+      <p>Các em hãy hoàn thành bài tập về nhà.<br>Chúc các em học tốt!</p>
+      <p style="margin:20px 0; font-weight:500;">Nếu cần ôn lại, hãy nhấn vào 2 nút bên phải:</p>
+      <div style="text-align:center;">
+        <button class="btn" onclick="openPopup('grammarPopup')">Grammar 📖</button>
+        <button class="btn" onclick="openPopup('vocabularyPopup')">Vocabulary 💬</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Grammar -->
+  <div class="popup-overlay" id="grammarPopup">
+    <div class="popup">
+      <button class="btn-close" onclick="closePopup('grammarPopup')">&times;</button>
+      <h2>Grammar 📖</h2>
+      <h3 style="color:#4a6cf7; margin:20px 0 10px; text-align:left;">Thì Hiện tại Hoàn thành (Present Perfect)</h3>
+      <table>
+        <thead><tr><th>Cấu trúc</th><th>Ví dụ / Giải thích</th></tr></thead>
+        <tbody>
+          <tr><td>I've just + V3/ed</td><td>Tôi vừa mới ...</td></tr>
+          <tr><td>I haven't + V3/ed yet</td><td>Tôi chưa ... (chưa làm xong)</td></tr>
+          <tr><td>Has he/she + V3/ed ... yet?</td><td>
+            <ul style="margin:0; padding-left:20px; list-style-type:none;">
+              <li>• Yes, he/she has.</li>
+              <li>• No, he/she hasn't.</li>
+            </ul>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Popup Vocabulary -->
+  <div class="popup-overlay" id="vocabularyPopup">
+    <div class="popup">
+      <button class="btn-close" onclick="closePopup('vocabularyPopup')">&times;</button>
+      <h2>Vocabulary 💬</h2>
+      <table>
+        <thead><tr><th>Cụm từ</th><th>Nghĩa tiếng Việt</th></tr></thead>
+        <tbody>
+          <tr><td>turn on the computer</td><td>bật máy tính</td></tr>
+          <tr><td>turn off the computer</td><td>tắt máy tính</td></tr>
+          <tr><td>turn up the volume</td><td>tăng âm lượng</td></tr>
+          <tr><td>turn down the volume</td><td>giảm âm lượng</td></tr>
+          <tr><td>log in to the website</td><td>đăng nhập vào trang web</td></tr>
+          <tr><td>log out of the website</td><td>đăng xuất khỏi trang web</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Nội dung chính - Bài tập với IFRAME -->
+  <div class="main-content" id="mainContent">
+    <div class="frame-container">
+      <iframe 
+        src="https://www.liveworksheets.com/embed/c?a=s&g=FLYERS&s=EBU5&t=Yqy7FnAHYs&sr=y&is=y&ia=y&l=ve&i=ottdudx&r=pe&f=dzdxzuut&ms=uz&cd=p-ti3-l---piiiyrjzznxnmhrngnmgxxzxg&mw=hs"
+        allowfullscreen>
+        Đang tải bài tập...
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Nút cố định bên phải -->
+  <div class="fixed-buttons">
+    <button class="fixed-btn" onclick="openPopup('grammarPopup')">
+      <i class="fas fa-book-open"></i>
+      <span class="tag">Ngữ pháp</span>
+    </button>
+    <button class="fixed-btn" onclick="openPopup('vocabularyPopup')">
+      <i class="fas fa-comments"></i>
+      <span class="tag">Từ vựng</span>
+    </button>
+    <button class="fixed-btn" onclick="openPopup('instructionPopup')">
+      <i class="fas fa-info-circle"></i>
+      <span class="tag">Hướng dẫn</span>
+    </button>
+  </div>
+
+  <script>
+    function closePopup(id) {
+      document.getElementById(id).classList.remove('active');
+      if (id === 'welcomePopup') {
+        document.getElementById('mainContent').classList.add('visible');
+      }
+    }
+
+    function openPopup(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function startExercise() {
+      closePopup('welcomePopup');
+    }
+  </script>
+</body>
+</html>
