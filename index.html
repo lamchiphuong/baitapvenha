@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bài tập về nhà Unit 8 - Lesson 2</title>
+  <title>Bài tập về nhà Unit 8 - Lesson 3</title>
   
   <!-- Open Graph / Preview khi chia sẻ link -->
-  <meta property="og:title" content="Bài tập về nhà Unit 8 - Lesson 2" />
+  <meta property="og:title" content="Bài tập về nhà Unit 8 - Lesson 3" />
   <meta property="og:description" content="Hãy làm bài tập về nhà trước khi quên hết mọi kiến thức! 🚀" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://lamchiphuong.github.io/pet-homework-unit3" />
@@ -17,7 +17,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bài tập về nhà Unit 8 - Lesson 2">
+  <meta name="twitter:title" content="Bài tập về nhà Unit 8 - Lesson 3">
   <meta name="twitter:description" content="Hãy làm bài tập về nhà trước khi quên hết mọi kiến thức! 🚀">
   <meta name="twitter:image" content="https://cdn-icons-png.flaticon.com/512/207/207190.png">
 
@@ -39,7 +39,7 @@
       overflow-x: hidden;
     }
 
-    /* POPUP - LUÔN ĐỨNG TRÊN CÙNG */
+    /* POPUP */
     .popup-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -105,24 +105,6 @@
       transform: rotate(90deg);
     }
 
-    .btn {
-      background: #4a6cf7;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 50px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(74, 108, 247, 0.3);
-      transition: all 0.3s;
-      margin: 20px 10px 0;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 25px rgba(74, 108, 247, 0.4);
-    }
-
     table {
       width: 100%;
       border-collapse: collapse;
@@ -167,8 +149,6 @@
       padding: 20px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.1);
       margin-bottom: 30px;
-      position: relative;
-      z-index: 1;
     }
 
     /* NÚT CỐ ĐỊNH */
@@ -179,7 +159,7 @@
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       z-index: 900;
     }
 
@@ -198,7 +178,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
       text-decoration: none;
     }
 
@@ -225,15 +204,13 @@
       background: #ff8fb1;
     }
 
-    .emoji {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
     .warning {
       color: red;
       font-weight: bold;
     }
+
+    ul { margin-left: 20px; }
+    li { margin-bottom: 8px; }
   </style>
 </head>
 <body>
@@ -242,145 +219,162 @@
   <div class="popup-overlay active" id="welcomePopup">
     <div class="popup">
       <button class="btn-close" onclick="closePopup('welcomePopup')">&times;</button>
-      <div class="emoji">⚠️📚</div>
-      <h2>Chào các em!</h2>
-      <p>Vì nhiều lần các em làm bài cẩu thả, nên lần này <span class="warning">nếu các em chưa làm đúng tất cả các câu thì CÁC EM PHẢI LÀM LẠI BÀI</span>!</p>
+      <h2>🧠 HƯỚNG DẪN LÀM BÀI – LESSON 3 (READING)</h2>
+      <p>Vì nhiều lần các em làm bài cẩu thả, nên lần này <span class="warning">nếu chưa làm đúng hết thì PHẢI LÀM LẠI</span>!</p>
+      <p style="margin-top:20px;">Nhấn vào các nút bên phải để xem hướng dẫn chi tiết từng phần A–E nhé!</p>
       <div style="text-align:center; margin-top:30px;">
-        <button class="btn" onclick="startExercise()">Em đồng ý và làm bài 🚀</button>
+        <button class="btn" style="background:#4a6cf7;color:white;padding:12px 30px;border-radius:50px;font-size:16px;cursor:pointer;" onclick="startExercise()">Bắt đầu làm bài 🚀</button>
       </div>
     </div>
   </div>
 
-  <!-- Popup Hướng dẫn -->
-  <div class="popup-overlay" id="instructionPopup">
+  <!-- Popup A -->
+  <div class="popup-overlay" id="popupA">
     <div class="popup">
-      <button class="btn-close" onclick="closePopup('instructionPopup')">&times;</button>
-      <h2>Hướng dẫn 📚</h2>
-      <p>Các em hãy hoàn thành bài tập về nhà.<br>Chúc các em học tốt!</p>
-      <p style="margin:20px 0; font-weight:500;">Nếu cần ôn lại, hãy nhấn vào các nút bên phải:</p>
-      <div style="text-align:center;">
-        <button class="btn" onclick="openPopup('grammarPopup')">Grammar 📖</button>
-        <button class="btn" onclick="openPopup('vocabularyPopup')">Vocabulary 💬</button>
-        <button class="btn" onclick="openPopup('irregularPopup')">Động từ bất quy tắc ⚡</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Popup Grammar -->
-  <div class="popup-overlay" id="grammarPopup">
-    <div class="popup">
-      <button class="btn-close" onclick="closePopup('grammarPopup')">&times;</button>
-      <h2>🧩 GRAMMAR SUMMARY</h2>
-      <h3 style="color:#4a6cf7; margin:20px 0 10px;">1️⃣ already & yet (Present Perfect)</h3>
-      <p><strong>already</strong> = đã rồi<br>
-         → dùng trong câu khẳng định<br>
-         → đứng giữa has / have và V3<br>
-         <em>She has already uploaded the photos.</em></p>
-      
-      <p><strong>yet</strong> = chưa<br>
-         → dùng trong câu hỏi & câu phủ định<br>
-         → đứng cuối câu<br>
-         <em>Has she uploaded the photos yet?</em><br>
-         <em>She hasn’t uploaded the photos yet.</em></p>
-
-      <h3 style="color:#4a6cf7; margin:30px 0 10px;">2️⃣ it / them (đại từ tân ngữ)</h3>
-      <p>→ dùng để tránh lặp danh từ</p>
-      <ul style="margin-left:20px;">
-        <li><strong>it</strong> = 1 vật<br><em>the email → it</em></li>
-        <li><strong>them</strong> = nhiều vật<br><em>the photos → them</em></li>
+      <button class="btn-close" onclick="closePopup('popupA')">&times;</button>
+      <h2>🅰 A. WRITE</h2>
+      <p><strong>🔹 Từ trong box (dịch nghĩa)</strong></p>
+      <ul>
+        <li><strong>done</strong>: xong</li>
+        <li><strong>know</strong>: biết</li>
+        <li><strong>haven’t</strong>: chưa</li>
+        <li><strong>online</strong>: trực tuyến</li>
+        <li><strong>report</strong>: bài báo cáo</li>
+        <li><strong>minute</strong>: phút</li>
+        <li><strong>reminds</strong>: nhắc nhở</li>
+        <li><strong>research</strong>: nghiên cứu</li>
       </ul>
-
-      <h3 style="color:#4a6cf7; margin:30px 0 10px;">3️⃣ Greeting & Closing (thư / email)</h3>
-      <p><strong>Greeting (mở thư):</strong></p>
-      <ul style="margin-left:20px;">
-        <li>Hi + tên,</li>
-        <li>Hello + tên,</li>
-      </ul>
-      
-      <p><strong>Closing (kết thư):</strong></p>
-      <ul style="margin-left:20px;">
-        <li>Your friend,</li>
-        <li>Best wishes,</li>
-        <li>See you soon,</li>
-      </ul>
-      
-      <p style="margin-top:20px;"><strong>📌 Nhớ nhanh:</strong><br>
-         Greeting + tên,<br>
-         Closing + dấu phẩy + tên người viết</p>
+      <p style="margin-top:20px;"><strong>🔹 Cách làm bài</strong></p>
+      <ol>
+        <li>Đọc toàn bộ đoạn văn trước.</li>
+        <li>Nhìn chỗ trống, đoán xem cần:<br>
+            • Danh từ (report, minute…)<br>
+            • Động từ (know, remind…)</li>
+        <li>Mỗi từ trong box chỉ dùng 1 lần.</li>
+        <li>Chú ý các cụm quen thuộc:<br>
+            • write a report<br>
+            • do research<br>
+            • Just a minute<br>
+            • haven’t finished yet</li>
+      </ol>
     </div>
   </div>
 
-  <!-- Popup Vocabulary -->
-  <div class="popup-overlay" id="vocabularyPopup">
+  <!-- Popup B -->
+  <div class="popup-overlay" id="popupB">
     <div class="popup">
-      <button class="btn-close" onclick="closePopup('vocabularyPopup')">&times;</button>
-      <h2>Vocabulary 💬</h2>
-      <table>
-        <thead><tr><th>Cụm từ</th><th>Phiên âm (IPA)</th><th>Nghĩa tiếng Việt</th></tr></thead>
-        <tbody>
-          <tr><td>upload the photos</td><td>/ˈʌp.ləʊd ðə ˈfəʊ.təʊz/</td><td>tải ảnh lên</td></tr>
-          <tr><td>print the photos</td><td>/prɪnt ðə ˈfəʊ.təʊz/</td><td>in ảnh</td></tr>
-          <tr><td>download the music</td><td>/ˌdaʊnˈləʊd ðə ˈmjuː.zɪk/</td><td>tải nhạc xuống</td></tr>
-          <tr><td>play the music</td><td>/pleɪ ðə ˈmjuː.zɪk/</td><td>mở / chơi nhạc</td></tr>
-          <tr><td>write the email</td><td>/raɪt ðiː ˈiː.meɪl/</td><td>viết email</td></tr>
-          <tr><td>send the email</td><td>/send ðiː ˈiː.meɪl/</td><td>gửi email</td></tr>
-        </tbody>
-      </table>
+      <button class="btn-close" onclick="closePopup('popupB')">&times;</button>
+      <h2>🅱 B. UNSCRAMBLE</h2>
+      <p style="margin-top:20px;"><strong>🔹 Cách làm bài</strong></p>
+      <ol>
+        <li>Nhìn câu hoàn chỉnh trước.</li>
+        <li>Sắp xếp lại các chữ cho thành từ đúng và có nghĩa.</li>
+      </ol>
     </div>
   </div>
 
-  <!-- Popup Động từ bất quy tắc -->
-  <div class="popup-overlay" id="irregularPopup">
+  <!-- Popup C -->
+  <div class="popup-overlay" id="popupC">
     <div class="popup">
-      <button class="btn-close" onclick="closePopup('irregularPopup')">&times;</button>
-      <h2>Động từ bất quy tắc ⚡</h2>
-      <table>
-        <thead><tr><th>Động từ (V1)</th><th>Quá khứ (V2)</th><th>Phân từ II (V3)</th></tr></thead>
-        <tbody>
-          <tr><td>upload</td><td>uploaded</td><td>uploaded</td></tr>
-          <tr><td>download</td><td>downloaded</td><td>downloaded</td></tr>
-          <tr><td>write</td><td>wrote</td><td>written</td></tr>
-          <tr><td>print</td><td>printed</td><td>printed</td></tr>
-          <tr><td>play</td><td>played</td><td>played</td></tr>
-          <tr><td>send</td><td>sent</td><td>sent</td></tr>
-        </tbody>
-      </table>
+      <button class="btn-close" onclick="closePopup('popupC')">&times;</button>
+      <h2>🅲 C. WRITE (TRẢ LỜI CÂU HỎI)</h2>
+      <p><strong>🔹 Cách làm bài</strong></p>
+      <ol>
+        <li>Đọc lại đoạn văn ở bài A.</li>
+        <li>Tìm câu chứa đúng thông tin của câu hỏi.</li>
+        <li>Trả lời bằng câu đầy đủ.</li>
+      </ol>
+      <p style="margin-top:20px; color:#d35400; font-weight:bold;">
+        📌 Không trả lời theo ý mình – chỉ lấy thông tin trong bài đọc.
+      </p>
     </div>
   </div>
 
-  <!-- Nội dung chính - Bài tập LiveWorksheets embed mới -->
+  <!-- Popup D -->
+  <div class="popup-overlay" id="popupD">
+    <div class="popup">
+      <button class="btn-close" onclick="closePopup('popupD')">&times;</button>
+      <h2>🅳 D. WRITE (HỘI THOẠI)</h2>
+      <p><strong>🔹 Từ trong box (dịch nghĩa)</strong></p>
+      <ul>
+        <li><strong>Let me know when you’re done.</strong><br>→ Báo cho tôi biết khi bạn làm xong nhé</li>
+        <li><strong>Go ahead and use it.</strong><br>→ Cứ dùng đi</li>
+        <li><strong>I just finished.</strong><br>→ Tôi vừa xong</li>
+        <li><strong>Just a minute.</strong><br>→ Chờ một chút</li>
+        <li><strong>Thanks!</strong><br>→ Cảm ơn</li>
+        <li><strong>printer</strong>: máy in</li>
+        <li><strong>piano</strong>: đàn piano</li>
+      </ul>
+      <p style="margin-top:20px;"><strong>🔹 Cách làm bài</strong></p>
+      <ol>
+        <li>Nhìn tranh để biết đang nói về đồ vật gì.</li>
+        <li>Đọc câu đầu, đoán ngữ cảnh giao tiếp.</li>
+        <li>Chọn câu trong box phù hợp nhất để trả lời.</li>
+        <li>Không dùng thừa từ.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Popup E -->
+  <div class="popup-overlay" id="popupE">
+    <div class="popup">
+      <button class="btn-close" onclick="closePopup('popupE')">&times;</button>
+      <h2>🅴 E. WHAT ABOUT YOU?</h2>
+      <p><strong>🔹 Mẫu câu + nghĩa</strong></p>
+      <ol>
+        <li><strong>I use the computer to study and play games.</strong><br>
+            → Tôi dùng máy tính để học và chơi game.</li>
+        <li><strong>I shop for clothes and books online.</strong><br>
+            → Tôi mua quần áo và sách online.</li>
+        <li><strong>I am online for two hours each day.</strong><br>
+            → Tôi online hai tiếng mỗi ngày.</li>
+      </ol>
+      <p style="margin-top:20px; color:#27ae60; font-weight:bold;">
+        📌 Học sinh có thể thay đổi:<br>
+        • study / watch videos / play games<br>
+        • clothes / toys / books<br>
+        • one hour / two hours / three hours
+      </p>
+    </div>
+  </div>
+
+  <!-- Nội dung chính - Bài tập LiveWorksheets -->
   <div class="main-content" id="mainContent">
     <div class="frame-container">
-      <div id="liveworksheet8333680" style="width:100%;">
-        <span id="lwslink8333680">
-          <a href="https://www.liveworksheets.com">EBU5 Unit 8 Lesson 2</a>, an interactive worksheet by <a href="https://www.liveworksheets.com/u/mrphuongvn">LAM CHI PHUONG</a>
+      <div id="liveworksheet8336854" style="width:100%;">
+        <span id="lwslink8336854">
+          <a href="https://www.liveworksheets.com">EBU5 Unit 8 Lesson 3</a>, an interactive worksheet by <a href="https://www.liveworksheets.com/u/mrphuongvn">LAM CHI PHUONG</a>
           <br><a href="https://www.liveworksheets.com">live<b>worksheets.com</b></a>
         </span>
       </div>
       <script src="https://www.liveworksheets.com/embed/embed-link.js?v=1"></script>
       <script>
-        loadliveworksheetEmbed(8333680, '9tic', 3048, 'www', 'new', 'https://www.liveworksheets.com/embed/c?a=s&g=FLYERS&s=EBU5&t=Yqy7FnAHYs&sr=y&is=y&ia=y&l=9t&i=otttxoz&r=ic&f=dzdxzuuf&ms=uz&cd=p-ti3-l---piii4zjzzzmjgokngnmgxxexg&mw=hs');
+        loadliveworksheetEmbed(8336854, 'yjkm', 3048, 'www', 'new', 'https://www.liveworksheets.com/embed/c?a=s&g=FLYERS&s=EBU5&t=Yqy7FnAHYs&sr=y&ia=y&l=yj&i=ottxofc&r=km&f=dzdxzudz&ms=uz&cd=p-ti3-l---piiiqjzzmjekcvngnmgxngxg&mw=hs');
       </script>
     </div>
   </div>
 
-  <!-- Nút cố định bên phải -->
+  <!-- Nút cố định bên phải - 5 nút cho A-E -->
   <div class="fixed-buttons">
-    <button class="fixed-btn" onclick="openPopup('grammarPopup')">
-      <i class="fas fa-book-open"></i>
-      <span class="tag">Ngữ pháp</span>
+    <button class="fixed-btn" onclick="openPopup('popupA')">
+      <div style="font-size:36px; line-height:1;">🅰</div>
+      <span class="tag">Bài A</span>
     </button>
-    <button class="fixed-btn" onclick="openPopup('vocabularyPopup')">
-      <i class="fas fa-comments"></i>
-      <span class="tag">Từ vựng</span>
+    <button class="fixed-btn" onclick="openPopup('popupB')">
+      <div style="font-size:36px; line-height:1;">🅱</div>
+      <span class="tag">Bài B</span>
     </button>
-    <button class="fixed-btn" onclick="openPopup('irregularPopup')">
-      <i class="fas fa-bolt"></i>
-      <span class="tag">Bất quy tắc</span>
+    <button class="fixed-btn" onclick="openPopup('popupC')">
+      <div style="font-size:36px; line-height:1;">🅲</div>
+      <span class="tag">Bài C</span>
     </button>
-    <button class="fixed-btn" onclick="openPopup('instructionPopup')">
-      <i class="fas fa-info-circle"></i>
-      <span class="tag">Hướng dẫn</span>
+    <button class="fixed-btn" onclick="openPopup('popupD')">
+      <div style="font-size:36px; line-height:1;">🅳</div>
+      <span class="tag">Bài D</span>
+    </button>
+    <button class="fixed-btn" onclick="openPopup('popupE')">
+      <div style="font-size:36px; line-height:1;">🅴</div>
+      <span class="tag">Bài E</span>
     </button>
   </div>
 
